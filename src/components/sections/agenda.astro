@@ -1,0 +1,23 @@
+---
+import AgendaCardSpeaker from "@/components/agenda-card-speaker.astro";
+import TimeZone from "@/components/time-zone.astro";
+import {speakers} from '../../utils/speakers-data';
+---
+
+<section class="relative overflow-hidden pb-20">
+  <div class="w-full h-32 rotate-180 bg-gradient-to-t from-black to-transparent absolute top-0"> </div>
+
+  <header class="mt-20 mx-auto container relative z-20">
+    <h2 class="text-7xl text-center font-black text-[#FCD91C]">Agenda</h2>
+    <p class="text-center pt-4">Las horas están en tu zona horaria: {<TimeZone />}</p>
+  </header>
+
+  <div>
+    {speakers.map(speaker => (
+      <AgendaCardSpeaker job={speaker.job} name={speaker.name} date={speaker.date} id={speaker.id} talk={speaker.talk} />
+    ))}
+  </div>
+
+  <div class="absolute h-screen w-screen top-0 -z-20 bg-slate-950"><div class="absolute bottom-0 left-[-20%] right-0 top-[-10%] h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(255,0,182,.15),rgba(255,255,255,0))]"></div><div class="absolute bottom-0 right-[-20%] top-[-10%] h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(255,0,182,.15),rgba(255,255,255,0))]"></div></div>
+</section>
+

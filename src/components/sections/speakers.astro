@@ -1,0 +1,31 @@
+---
+import {speakers} from '../../utils/speakers-data';
+import SpeakerCard from "@/components/speaker-card.astro";
+---
+
+<main class="mx-auto container mt-20">
+  <h2 class="text-7xl text-center font-black text-[#FCD91C]">Speakers</h2>
+  <p class="text-neutral-300 pt-4 text-center">Estos son speakers que estaran en la midufest(example)</p>
+  <ul class="flex flex-wrap justify-around gap-y-10 mt-10 mx-auto">
+    <!--each item-->
+    {
+    speakers.map((speaker) => (
+      <SpeakerCard 
+        name={speaker.name}
+        talk={speaker.talk}
+        state={speaker.state}
+        image={speaker.image}
+        twitter={speaker.twitter}
+        description={speaker.description}
+
+      />
+    ))}
+  </ul>
+</main>
+
+<style>
+  ul {
+    width: calc(100% - 250px);
+    max-width: 1024px;
+  }
+</style>

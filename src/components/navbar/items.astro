@@ -1,0 +1,43 @@
+<ul class="flex gap-10"
+  <li><a class="item" href="#">Inicio</a></li>
+  <li><a class="item" href="#">Patrocinadores</a></li>
+  <li><a class="item" href="#">Speakers</a></li>
+  <li><a class="item" href="#">Agenda</a></li>
+  <li><a class="item" href="#">Ticket</a></li>
+</ul>
+
+
+<style>
+.item {
+  position: relative;
+  font-size: 20px;
+}
+.item:before {
+  content: '{';
+  position: absolute;
+  transform: translate(-20px);
+  color: #FFD200;
+  opacity: 0;
+  transition-duration: 300ms;
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+ .item:hover:before {
+  opacity: 1;
+  transform: translateX(-10px);
+ }
+ .item::after {
+  content: '}';
+  position: absolute;
+  transform: translateX(15px);
+  color: #FFD200;
+  opacity: 0;
+  transition-duration: 300ms;
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+ }
+ .item:hover:after {
+  opacity: 1;
+  transform: translateX(3px);
+ }
+</style>

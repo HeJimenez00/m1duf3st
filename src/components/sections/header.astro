@@ -1,0 +1,21 @@
+---
+import Ticket from '../ticket/ticket.astro'
+import Background from '../background.astro'
+import Counter from '../ui/counter.astro'
+---
+
+<header class="relative w-full h-screen content-center overflow-hidden">
+  <div class="text-center mx-auto container">
+    <div class="mb-10 relative z-10">
+      <h1 class="text-white leading-[90px] font-black">Evento de <span class="block text-[#FCD91C]">Programación</span></h1>
+      <p class="text-neutral-300 pt-4">Conferencia de Programación y Desarrollo en Twitch</p>
+    </div>
+    <Background />
+    <Ticket />
+    <Counter />
+  </div>
+  <div class="w-full h-32 bg-gradient-to-t from-black to-transparent absolute bottom-0"> </div>
+
+  <div class="absolute h-screen w-screen top-0 -z-20 bg-slate-950"><div class="absolute bottom-0 left-[-20%] right-0 top-[-10%] h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(255,0,182,.15),rgba(255,255,255,0))]"></div><div class="absolute bottom-0 right-[-20%] top-[-10%] h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(255,0,182,.15),rgba(255,255,255,0))]"></div></div>
+</header>
+

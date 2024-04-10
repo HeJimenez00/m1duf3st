@@ -1,0 +1,43 @@
+---
+const { id, job, date, name, talk } = Astro.props;
+---
+
+<article class="card mx-auto mt-10 overflow-hidden group/card relative flex items-center gap-[21px] px-5 py-[25px] border-neutral-400/10 border hover:border-[#FCD91C] transition-colors">
+  <time class="font-black text-5xl opacity-50 group-hover/card:opacity-100 transition-opacity">{date}</time>
+  <header>
+    <h3 class="text-[#FCD91C] normal-case">{name} <span class="text-neutral-400 italic">- {job}</span></h3>
+    <p class="font-bold text-2xl">{talk}</p>
+  </header>
+  <aside class="absolute right-0">
+    <div class="w-[137px] h-[149px] bg-red-500/50 absolute -z-10 right-4 top-10 rounded-full blur-3xl group-hover/card:opacity-70 transition-opacity"></div>
+    <img src=`/agenda/${id}.png` class="w-[199px] h-[152px] object-contain group-hover/card:opacity-70 transition-all duration-200 group-hover/card:scale-105">
+  </aside>
+</article>
+
+<style>
+  .card {
+    height: 112px;
+    width: 782px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 0px 25px 0px rgba(0,0,0,1);
+    position: relative;
+    background: linear-gradient(140deg, #7C85A9 -50%, transparent 15%);
+  }
+  .card::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		display: block;
+    background: linear-gradient(140deg, #7C85A9 -30%, transparent 15%);
+		opacity: 0;
+		height: 50%;
+		transition:
+			opacity 0.2s ease-in-out,
+			height 0.2s ease-in-out;
+	}
+  .card:hover::before{
+		opacity: 0.5;
+		height: 90%;
+	}
+</style>

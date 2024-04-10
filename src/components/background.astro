@@ -1,0 +1,151 @@
+<script>
+  import * as THREE from 'three';
+  import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+  import GUI from 'lil-gui';
+
+  const canvas = document.getElementById("myParticles");
+
+  /*
+   * GUI
+  */
+  const gui = new GUI().close()
+
+  const particlesGUI = gui.addFolder("particles")
+  particlesGUI.close()
+
+  /*
+   * Scene
+  */
+  const scene = new THREE.Scene();
+
+  /**
+   * Textures
+   */
+  // const textureLoader = new THREE.TextureLoader()
+  // const vim = textureLoader.load('/js.png')
+  // vim.colorSpace = THREE.SRGBColorSpace;
+
+  /**
+   * Sizes
+   */
+  const sizes = {
+    width: window.innerWidth,
+    height: window.innerHeight,
+  }
+
+  /**
+   * Camera
+   */
+  const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100);
+  camera.position.z = 2;
+  scene.add(camera)
+
+  /**
+   * particles
+  */
+  const particlesGeometry = new THREE.BufferGeometry();
+  const NUMBER = 1000;
+  const positionParticles = new Float32Array(NUMBER * 3);
+
+  for(let i = 0; i < NUMBER * 3; i++)
+    positionParticles[i] = (Math.random() - 0.5) * 15;
+
+
+  particlesGeometry.setAttribute(
+    "position",
+    new THREE.BufferAttribute(positionParticles, 3),
+  );
+
+  const particlesMaterial = new THREE.PointsMaterial();
+  particlesMaterial.size = 0.04;
+  particlesMaterial.sizeAttenuation = true;
+  // particlesMaterial.alphaMap = vim;
+  // particlesMaterial.transparent = true;
+  // particlesMaterial.depthTest = true;
+  // particlesMaterial.color = new THREE.Color(0xfffff00)
+
+  particlesGUI.add(particlesMaterial, "size").min(0).max(5).step(0.01)
+
+
+  const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+  scene.add(particles)
+
+  /*
+   * Responsive
+   */
+  document.addEventListener('resize', function() {
+    //Update sizes
+    sizes.width = window.innerWidth;
+    sizes.height = window.innerHeight;
+
+    // Update Camera
+    camera.aspect = sizes.width / sizes.height;
+    camera.updateProjectionMatrix()
+
+    //Update Render
+    renderer.setSize(sizes.width, sizes.height)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  })
+
+  /**
+   * Render
+  */
+  const renderer = new THREE.WebGLRenderer({
+    canvas
+  })
+  renderer.setClearAlpha(0)
+  renderer.setSize(sizes.width, sizes.height)
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  /**
+   * Controls
+  */
+  const propertiesGUI = {
+    particlesRotationX: true,
+    particlesRotationY: true,
+  }
+
+  particlesGUI.add(propertiesGUI, "particlesRotationX");
+  particlesGUI.add(propertiesGUI, "particlesRotationY");
+
+
+  // Función para rotar las partículas
+  function rotationX(elapsedTime: number) {
+    if (propertiesGUI.particlesRotationX) {
+      particles.rotation.x = elapsedTime * 0.05;
+    }
+  }
+
+  function rotationY(elapsedTime: number) {
+    if (propertiesGUI.particlesRotationY) {
+      particles.rotation.y = elapsedTime * 0.05;
+    }
+  }
+
+  const controls = new OrbitControls(camera, canvas);
+  controls.enableDamping = true;
+  controls.enableZoom = false;
+  controls.update()
+  
+
+  const clock = new THREE.Clock();
+
+  function tick() {
+
+    const elapsedTime = clock.getElapsedTime()
+
+    /*
+      * Rotate particles
+    */
+    rotationX(elapsedTime);
+    rotationY(elapsedTime);
+
+    renderer.render(scene, camera);
+    controls.update();
+
+    requestAnimationFrame(tick);
+  }
+  tick();
+</script>
+
+<canvas id="myParticles" class="w-full h-screen absolute z-0 top-0 left-0"></canvas>

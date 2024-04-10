@@ -1,0 +1,29 @@
+---
+const {name, talk, state, image, twitter, description} = Astro.props;
+---
+
+<div class="relative w-[285px] h-[400px]">
+  <li class="bg-[#111111]/10 border-2 border-[#FCD91C]/50 p-3 rounded-[20px]">
+    <img src={image} alt=`Imagen de ${name}` class="rounded-[10px] w-[261px] h-[261px]">
+      <div class="flex justify-between items-center pt-[10px]">
+        <h3 class="text-[#FCD91C] font-bold text-xl">{name}</h3>
+        <a href=`https://twitter.com/${twitter}` target="_blank">@{twitter}</a>
+      </div>
+    <div class="flex justify-between pt-[10px]">
+      <p>{talk}</p>
+      <p>{state}</p>
+    </div>
+    <p class="description border-t-gray-50 border-t font-light text-gray-500">{description}</p>
+  </li>
+  <img src={image} alt=`Imagen de ${name}` class="rounded-[10px] w-[261px] h-[261px] absolute -z-10 -translate-x-2/4 -translate-y-[70%] top-1/2 left-1/2  blur-[57.8px] scale-[0.9]">
+</div>
+
+<style>
+  .description {
+    max-width: 300px;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+</style>

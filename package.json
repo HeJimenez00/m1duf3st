@@ -1,0 +1,24 @@
+{
+  "name": "midufest",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/preact": "^3.1.2",
+    "@astrojs/tailwind": "^5.1.0",
+    "@types/three": "^0.162.0",
+    "astro": "^4.5.10",
+    "atropos": "^2.0.2",
+    "gsap": "^3.12.5",
+    "lil-gui": "^0.19.2",
+    "sass": "^1.74.1",
+    "tailwindcss": "^3.4.3",
+    "three": "^0.162.0"
+  }
+}

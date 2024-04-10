@@ -1,0 +1,44 @@
+---
+import ContentTicket from "./content-ticket.astro"
+import BgTicket from './bg-ticket.astro'
+import Background from "../background.astro";
+---
+
+<script>
+  import Atropos from "atropos";
+  import 'atropos/css';
+
+  const myAtropos = Atropos({
+    el: '.my-atropos',
+    activeOffset: 40,
+    highlight: false,
+    onEnter() {
+    },
+    onLeave() {
+    },
+    onRotate() {
+    }
+  })
+</script>
+
+<div class="atropos my-atropos relative mx-auto ">
+  <div class="atropos-scale">
+    <div class="atropos-rotate" >
+      <div class="atropos-inner">
+        <div class="atropos-scale">
+          <ContentTicket />
+          <BgTicket />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .my-atropos {
+    width: 599px;
+    height: 311px;
+    position: relative;
+    z-index: 20;
+  }
+</style>
